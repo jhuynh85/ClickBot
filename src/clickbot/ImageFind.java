@@ -1,6 +1,5 @@
 package clickbot;
 
-import java.awt.AWTException;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -29,7 +28,7 @@ public class ImageFind {
 	private Rectangle screenRectangle;
 
 	/**
-	 * Constructor when both anchor images are provided
+	 * Constructor when both anchor images are provided.
 	 * 
 	 * @param tl
 	 *            Image of top-left anchor
@@ -37,26 +36,23 @@ public class ImageFind {
 	 *            Image of bottom-right anchor
 	 * @throws Exception
 	 */
-	ImageFind(BufferedImage tl, BufferedImage br) throws Exception {
+	ImageFind(BufferedImage t, BufferedImage b) throws Exception {
 		bot = new Robot();
+		tl = t;
+		br = b;
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		screenRectangle = new Rectangle(screenSize);
-		screen = bot.createScreenCapture(screenRectangle);
+		// screen = bot.createScreenCapture(screenRectangle);
 
 		// Save as PNG
-		ImageIO.write(screen, "png", new File("screencapture.png"));
-
-		topLeft = findImg(tl, screen);
-		botRight = findImg(br, screen);
-
-		if (topLeft == null || botRight == null) {
-			throw new Exception("Can't find anchors");
-		} else {
-			System.out.println("TL anchor: (" + topLeft.getX() + ","
-					+ topLeft.getY() + ")");
-			System.out.println("BR anchor: (" + botRight.getX() + ","
-					+ botRight.getY() + ")");
-		}
+		// ImageIO.write(screen, "png", new File("screencapture.png"));
+		/*
+		 * if (topLeft == null || botRight == null) { throw new
+		 * Exception("Can't find anchors"); } else {
+		 * System.out.println("TL anchor: (" + topLeft.getX() + "," +
+		 * topLeft.getY() + ")"); System.out.println("BR anchor: (" +
+		 * botRight.getX() + "," + botRight.getY() + ")"); }
+		 */
 	}
 
 	/**
@@ -116,13 +112,43 @@ public class ImageFind {
 	}
 
 	/**
+	 * Searches entire screen for given image
+	 * 
+	 * @param img
+	 *            Image to search for
+	 * @return True if and only if image is found on the screen
+	 */
+	public Point findImg(BufferedImage img) {
+		screen = bot.createScreenCapture(screenRectangle);
+		int target = 2424318;
+		int TL;
+
+		for (int i = 400; i < 1000; i += 5) {
+			// Y traverse
+			for (int j = 200; j < 700; j += 5) {
+				TL = -(screen.getRGB(i, j));
+				// Target found
+				if (TL == target) {
+					return new Point(i, j);
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
 	 * Searches the screen for the given anchors. Used when the user may have
 	 * moved the game window.
 	 */
-	void findAnchors() {
+	boolean findAnchors() {
 		screen = bot.createScreenCapture(screenRectangle);
 		topLeft = findImg(tl, screen);
 		botRight = findImg(br, screen);
+
+		if (topLeft == null || botRight == null) {
+			return false;
+		}
+		return true;
 	}
 
 	// computes the root mean squared error between a rectangular window in
@@ -141,6 +167,5 @@ public class ImageFind {
 		}
 		return Math.sqrt(dist) / target.getWidth() / target.getHeight();
 	}
-	
-	
+
 }
