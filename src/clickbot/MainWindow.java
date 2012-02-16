@@ -13,20 +13,15 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import java.awt.Font;
 
 /**
- * Main screen
+ * Main window
  * 
  * @author Joseph Huynh
  * 
  */
 public class MainWindow extends JFrame {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JLabel statLbl;
 	private JButton btnStart;
@@ -55,7 +50,7 @@ public class MainWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
-		statLbl = new JLabel("Status: Ready");
+		statLbl = new JLabel("Status: Calibration required");
 		statLbl.setHorizontalAlignment(SwingConstants.CENTER);
 		statLbl.setBounds(10, 11, 254, 14);
 		getContentPane().add(statLbl);

@@ -1,4 +1,17 @@
-ClickBot
+ClickBot 
 by Joseph Huynh
 
+DESCRIPTION:
+============
 Bot for the Clickfast Flash game (http://www.andkon.com/arcade/mousegames/clickfast/).
+
+INSTRUCTIONS:
+=============
+1. Go to game web site (link provided), make sure browser window is maximized
+2. Click 'Calibrate' to calibrate the bot to your screen size
+3. Click 'Start' to run the bot
+4. Start the game
+
+TODO:
+=====
+- Reduce number of misclicks (tweak search and click algorithm?)
