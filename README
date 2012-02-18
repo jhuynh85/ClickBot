@@ -5,6 +5,15 @@ DESCRIPTION:
 ============
 Bot for the Clickfast Flash game (http://www.andkon.com/arcade/mousegames/clickfast/).
 
+HOW IT WORKS:
+============
+The bot continuously captures an image of the current screen and searches the image
+for a pixel whose color matches a known RGB value.  If a match is found, it moves the 
+mouse pointer to the corresponding location and performs a click action. Performance
+was improved by increasing the pixel step size (ie. checking the color of every 15th
+pixel instead of every pixel) and decreasing the search boundaries (only searching
+within the flash game region and not the entire screen).
+
 INSTRUCTIONS:
 =============
 1. Go to game web site (link provided), make sure browser window is maximized
