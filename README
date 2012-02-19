@@ -14,9 +14,10 @@ was improved by increasing the pixel step size (ie. checking the color of every 
 pixel instead of every pixel) and decreasing the search boundaries (only searching
 within the flash game region and not the entire screen).
 
-Note: The bot has only been tested with a screen resolution of 1440x900, the calibration
-code for other resolutions is still buggy. If you know the location of the flash game
-region for your screen size you can hard-code it in the ImageFind.setAnchors method.
+Note: The bot has only been tested with a screen resolution of 1440x900, the 
+calibration code for other resolutions is still buggy. If you know the location of 
+the flash game region for your screen size you can hard-code it in the 
+ImageFind.setAnchors method.
 
 INSTRUCTIONS:
 =============
