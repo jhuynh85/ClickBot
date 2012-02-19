@@ -16,7 +16,7 @@ within the flash game region and not the entire screen).
 
 Note: The bot has only been tested with a screen resolution of 1440x900, the calibration
 code for other resolutions is still buggy. If you know the location of the flash game
-region for your screen size you can hard-code it in the ImageFind.findImage method.
+region for your screen size you can hard-code it in the ImageFind.setAnchors method.
 
 INSTRUCTIONS:
 =============
